@@ -1,7 +1,8 @@
 const form = document.getElementById("ticketForm");
 const lista = document.getElementById("listaChamados");
 
-let chamados = [];
+// salva no navegador
+let chamados = JSON.parse(localStorage.getItem("chamados")) || [];
 
 form.addEventListener("submit", function(e) {
   e.preventDefault();
@@ -13,7 +14,8 @@ form.addEventListener("submit", function(e) {
     id: Date.now(),
     titulo,
     descricao,
-    status: "Aberto"
+    status: "Aberto",
+    dataAbertura: new Date().toLocaleString()
   };
 
   chamados.push(chamado);
@@ -30,14 +32,25 @@ function renderizar() {
 
     li.innerHTML = `
       <strong>${chamado.titulo}</strong><br>
-      ${chamado.descricao}<br>
-      Status: ${chamado.status}
+      ${chamado.descricao}<br><br>
+
+      📅 Abertura: ${chamado.dataAbertura}<br>
+
+      Status: <span class="${chamado.status === "Fechado" ? "fechado" : "aberto"}">
+        ${chamado.status}
+      </span>
+
       <br><br>
-      <button onclick="fecharChamado(${chamado.id})">Fechar</button>
+
+      <button class="closeBtn" onclick="fecharChamado(${chamado.id})">
+        Fechar
+      </button>
     `;
 
     lista.appendChild(li);
   });
+
+  localStorage.setItem("chamados", JSON.stringify(chamados));
 }
 
 function fecharChamado(id) {
