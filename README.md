@@ -17,4 +17,4 @@ Sistema de chamados (Help Desk) desenvolvido com HTML, CSS e JavaScript.
 Projeto desenvolvido para praticar lógica de programação, manipulação de DOM e simulação de sistema real de suporte técnico.
 
 ## 🌐 Acesso
-https://github.com/nathalyebelinschi13/helpdesk-nana
+https://nathalyebelinschi13.github.io/helpdesk-nana/
